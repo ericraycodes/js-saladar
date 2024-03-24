@@ -391,20 +391,24 @@ document.addEventListener('touchend', (e) => {
 	let diffY = startY - e.changedTouches[0].clientY;
 
 	if (Math.abs(diffX) > Math.abs(diffY)) {
-		if (diffX > 0) {
+		// positive difference: leftward
+		if (diffX>0 && canMoveLeft()) {
 			slideLeft();
 			setTwo();
 		}
-		else {
+		// negative difference: rightward
+		else if (diffX<0 && canMoveRight()) {
 			slideRight();
 			setTwo();
 		}
 	} else {
-		if (diffY > 0) {
+		// positive difference: upward
+		if (diffY>0 && canMoveUp()) {
 			slideUp();
 			setTwo();
 		}
-		else {
+		// negative difference: downward
+		else if (diffY<0 && canMoveDown()) {
 			slideDown();
 			setTwo();
 		}
